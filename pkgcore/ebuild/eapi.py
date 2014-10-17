@@ -321,3 +321,15 @@ eapi5 = EAPI.register("5",
     )),
     ebd_env_options=eapi4.ebd_env_options,
 )
+
+eapi6 = EAPI.register("6",
+    eapi5.phases,
+    eapi5.default_phases,
+    eapi5.metadata_keys,
+    eapi5.mandatory_keys,
+    eapi5.tracked_attributes,
+    combine_dicts(eapi5.options, dict(
+        is_supported=False,
+    )),
+    ebd_env_options=eapi5.ebd_env_options,
+)

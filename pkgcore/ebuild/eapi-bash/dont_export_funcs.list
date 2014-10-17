@@ -23,6 +23,8 @@ default_src_unpack
 die
 diropts
 docinto
+eapply
+eapply_user
 ebegin
 econf
 eend
@@ -30,12 +32,14 @@ eerror
 einfo
 einfon
 einstall
+einstalldocs
 elog
 eqawarn
 ewarn
 exeinto
 exeopts
 get_KV
+get_libdir
 has
 has_version
 hasq
@@ -120,6 +124,7 @@ __phase_default_src_unpack
 __phase_eapi2_src_configure
 __phase_eapi2_src_prepare
 __phase_eapi4_src_install
+__phase_eapi6_src_prepare
 __qa_interceptors_disable
 __qa_interceptors_enable
 __qa_invoke
