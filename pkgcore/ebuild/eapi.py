@@ -31,6 +31,9 @@ eapi_optionals = mappings.ImmutableDict({
     # Controls --disable-dependency-tracking passing for econf.
     'econf_disable_dependency_tracking':False,
 
+    # Controls --docdir and --htmldir passing for econf; see PMS.
+    'econf_docdir_and_htmldir':False,
+
     # Controls whether an ebuild_phase function exists for ebuild consumption
     'ebuild_phase_func':False,
 
@@ -227,7 +230,7 @@ common_env_optionals = mappings.ImmutableDict(dict.fromkeys(
     ("dodoc_allow_recursive", "doins_allow_symlinks",
      "doman_language_detect", "doman_language_override",
      "econf_disable_dependency_tracking", "econf_disable_silent_rules",
-     "new_reads_stdin", "profile_iuse_injection",),
+     "econf_docdir_and_htmldir", "new_reads_stdin", "profile_iuse_injection",),
     convert_bool_to_bash_bool))
 
 
@@ -329,6 +332,7 @@ eapi6 = EAPI.register("6",
     eapi5.mandatory_keys,
     eapi5.tracked_attributes,
     combine_dicts(eapi5.options, dict(
+        econf_docdir_and_htmldir=True,
         is_supported=False,
     )),
     ebd_env_options=eapi5.ebd_env_options,
