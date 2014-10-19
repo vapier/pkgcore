@@ -3,8 +3,13 @@
 
 source "${PKGCORE_BIN_PATH}"/eapi/5.lib
 
+INTERNAL_FUNCS+=( get_libdir )
+
 get_libdir() {
-	:
+	local CONF_LIBDIR="lib"
+	local LIBDIR_VAR="LIBDIR_${ABI}"
+	[[ -n ${ABI} && -n ${!LIBDIR_VAR} ]] && CONF_LIBDIR=${!LIBDIR_VAR}
+	echo "${CONF_LIBDIR}"
 }
 
 einstalldocs() {

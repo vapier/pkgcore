@@ -39,7 +39,6 @@ ewarn
 exeinto
 exeopts
 get_KV
-get_libdir
 has
 has_version
 hasq

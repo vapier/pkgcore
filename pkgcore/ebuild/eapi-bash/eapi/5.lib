@@ -3,6 +3,9 @@
 
 source "${PKGCORE_BIN_PATH}"/eapi/4.lib
 
+# allow exporting eclass usex implementation for previous EAPIs
+INTERNAL_FUNCS+=( usex )
+
 has_version() {
 	local r=${ROOT:-/}
 	if [[ $1 == "--host-root" ]]; then
@@ -26,8 +29,5 @@ usex() {
 	use "$1" && echo "${2-yes}$4" || echo "${3-no}$5"
 	return 0
 }
-
-# allow exporting eclass usex implementation for previous EAPIs
-INTERNAL_FUNCS+=( usex )
 
 :
