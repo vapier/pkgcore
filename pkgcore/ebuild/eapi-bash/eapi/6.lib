@@ -13,7 +13,17 @@ get_libdir() {
 }
 
 einstalldocs() {
-	:
+	local tmp_var
+	if ! tmp_var=$(declare -p DOCS 2> /dev/null); then
+		for tmp_var in README* ChangeLog AUTHORS NEWS TODO CHANGES \
+				THANKS BUGS FAQ CREDITS CHANGELOG; do
+			[[ -s ${tmp_var} ]] && dodoc "${tmp_var}"
+		done
+	elif [[ ${tmp_var} == "declare -a"* ]]; then
+		dodoc "${DOCS[@]}"
+	else
+		dodoc ${DOCS}
+	fi
 }
 
 eapply() {
