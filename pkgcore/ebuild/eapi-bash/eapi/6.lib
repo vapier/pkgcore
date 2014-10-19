@@ -21,7 +21,21 @@ eapply() {
 }
 
 eapply_user() {
-	:
+	local patchdir=${ROOT:-/}etc/portage/patches
+
+	# patch locations:
+	#   - ${CATEGORY}/${P}-${PR}(:${SLOT})
+	#   - ${CATEGORY}/${P}(:${SLOT})
+	#   - ${CATEGORY}/${PN}(:${SLOT})
+	# currently "hidden" patch files starting with a '.' aren't applied
+	__shopt_push -s nullglob
+	local patches=( "${patchdir}"/${CATEGORY}/{${P}-${PR},${P},${PN}}{,:${SLOT%/*}}/* )
+	__shopt_pop
+
+	if [[ -n ${patches[@]} ]]; then
+		einfo "Applying user patches ..."
+		eapply "${patches[@]}"
+	fi
 }
 
 __phase_eapi6_src_prepare() {
