@@ -40,6 +40,9 @@ eapi_optionals = mappings.ImmutableDict({
     # Controls whether REPLACING vars are exported to ebuilds; see PMS.
     "exports_replacing":False,
 
+    # Controls of whether failglob is enabled globally; see PMS.
+    "global_failglob":False,
+
     # Controls whether MERGE vars are exported to ebuilds; see PMS.
     "has_merge_type":False,
 
@@ -333,6 +336,7 @@ eapi6 = EAPI.register("6",
     eapi5.tracked_attributes,
     combine_dicts(eapi5.options, dict(
         econf_docdir_and_htmldir=True,
+        global_failglob=True,
         is_supported=False,
     )),
     ebd_env_options=eapi5.ebd_env_options,
