@@ -65,6 +65,9 @@ eapi_optionals = mappings.ImmutableDict({
     # stdin, rather than an explicit ondisk file.
     'new_reads_stdin':False,
 
+    # Controls whether die supports a nonfatal option; see PMS.
+    "nonfatal_die":False,
+
     # Controls whether this EAPI supports prefix related variables/settings; prefix
     # awareness basically.  See PMS for full details.
     "prefix_capable":True,
@@ -233,7 +236,8 @@ common_env_optionals = mappings.ImmutableDict(dict.fromkeys(
     ("dodoc_allow_recursive", "doins_allow_symlinks",
      "doman_language_detect", "doman_language_override",
      "econf_disable_dependency_tracking", "econf_disable_silent_rules",
-     "econf_docdir_and_htmldir", "new_reads_stdin", "profile_iuse_injection",),
+     "econf_docdir_and_htmldir", "new_reads_stdin",
+     "nonfatal_die", "profile_iuse_injection",),
     convert_bool_to_bash_bool))
 
 
@@ -337,6 +341,7 @@ eapi6 = EAPI.register("6",
     combine_dicts(eapi5.options, dict(
         econf_docdir_and_htmldir=True,
         global_failglob=True,
+        nonfatal_die=True,
         is_supported=False,
     )),
     ebd_env_options=eapi5.ebd_env_options,
