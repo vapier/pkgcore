@@ -20,9 +20,9 @@ einstalldocs() {
 			[[ -s ${tmp_var} ]] && dodoc "${tmp_var}"
 		done
 	elif [[ ${tmp_var} == "declare -a"* ]]; then
-		dodoc -r "${DOCS[@]}"
+		[[ -n ${DOCS[@]} ]] && dodoc -r "${DOCS[@]}"
 	else
-		dodoc -r ${DOCS}
+		[[ -n ${DOCS} ]] && dodoc -r ${DOCS}
 	fi
 }
 
