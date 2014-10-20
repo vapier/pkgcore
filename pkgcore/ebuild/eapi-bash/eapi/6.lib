@@ -25,7 +25,16 @@ eapply_user() {
 }
 
 __phase_eapi6_src_prepare() {
-	:
+	local var
+	if var=$(declare -p PATCHES 2> /dev/null); then
+		if [[ ${var} == "declare -a "* ]]; then
+			eapply "${PATCHES[@]}"
+		else
+			eapply ${PATCHES}
+		fi
+	fi
+
+	eapply_user
 }
 
 default_src_prepare() { __phase_eapi6_src_prepare; }
